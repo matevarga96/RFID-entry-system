@@ -5,10 +5,10 @@ from mfrc522 import SimpleMFRC522      #a SimpleMFRC522 könyvtárt fogjuk haszn
 
 reader = SimpleMFRC522()               #csinál egy objektumot a könyvtárból, és meghívja a setup funkcióját
 
-try:
-        text = input('New data:')
-        print("Now place your tag to write")
-        reader.write(text)
-        print("Written")
-finally:
-        GPIO.cleanup()
+try:                                                  #try-jal írjuk, hogy el tudjuk csípni az esetleges rendellenes viselkedését a kódnak
+        text = input('New data:')                     #beolvas a parancssorról, eltárolja egy text változóban
+        print("Now place your tag to write")          #mehet a kártya az olvasóhoz
+        reader.write(text)                            #a tagre írjuk a változónkat
+        print("Written")                              #sikeres rögzítés
+finally:                                              #try után fut le
+        GPIO.cleanup()                                #feltakarítunk magunk után
